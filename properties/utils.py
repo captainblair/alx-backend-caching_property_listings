@@ -3,6 +3,8 @@ from django_redis import get_redis_connection
 import logging
 from .models import Property
 
+logger = logging.getLogger(__name__)
+
 def get_all_properties():
     properties = cache.get('all_properties')
     if properties is None:
@@ -26,5 +28,5 @@ def get_redis_cache_metrics():
         'hit_ratio': hit_ratio
     }
     
-    logging.info(f"Redis Cache Metrics: {metrics}")
+    logger.error(f"Redis Cache Metrics: {metrics}")
     return metrics
